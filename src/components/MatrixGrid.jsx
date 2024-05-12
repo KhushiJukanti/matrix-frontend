@@ -20,13 +20,16 @@ const MatrixGrid = () => {
         }
     };
 
+
     const handleChange = (e, xValue, yValue) => {
-        const { value } = e.target;
-        setSelectedFields({
-            ...selectedFields,
-            [`${xValue}${yValue}`]: { ...selectedFields[`${xValue}${yValue}`], value }
-        });
+        const newValue = e.target.value;
+        setSelectedFields(prevState => ({
+            ...prevState,
+            [`${xValue}${yValue}`]: { ...prevState[`${xValue}${yValue}`], value: newValue }
+        }));
     };
+
+
 
     const toggleGrid = (xValue, yValue) => {
         setActiveGrid(activeGrid === `${xValue}${yValue}` ? null : `${xValue}${yValue}`);
@@ -81,7 +84,10 @@ const MatrixGrid = () => {
                                                     type="text"
                                                     value={selectedFields[`A1`]?.value || ''}
                                                     onChange={(e) => handleChange(e, 'A', '1')}
+                                                    autoFocus // Add autoFocus attribute
                                                 />
+
+
                                                 <button onClick={() => handleSave('A', '1')}>Save</button>
                                             </div>
                                         )}
@@ -121,6 +127,7 @@ const MatrixGrid = () => {
                                                     type="text"
                                                     value={selectedFields[`A2`]?.value || ''}
                                                     onChange={(e) => handleChange(e, 'A', '2')}
+                                                    autoFocus
                                                 />
                                                 <button onClick={() => handleSave('A', '2')}>Save</button>
                                             </div>
@@ -163,6 +170,7 @@ const MatrixGrid = () => {
                                                     type="text"
                                                     value={selectedFields[`A4`]?.value || ''}
                                                     onChange={(e) => handleChange(e, 'A', '4')}
+                                                    autoFocus
                                                 />
                                                 <button onClick={() => handleSave('A', '4')}>Save</button>
                                             </div>
@@ -202,6 +210,7 @@ const MatrixGrid = () => {
                                                     type="text"
                                                     value={selectedFields[`A3`]?.value || ''}
                                                     onChange={(e) => handleChange(e, 'A', '3')}
+                                                    autoFocus
                                                 />
                                                 <button onClick={() => handleSave('A', '3')}>Save</button>
                                             </div>
